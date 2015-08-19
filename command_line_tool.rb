@@ -6,14 +6,38 @@ class CommandLine
 	
 	def initialize
 	  @user_name = "victor"
+	  get_user_info
+	end
+
+	def hardcoded
+	  @password = "password"	
+	end
+
+	def password_from_file
 	  @password = IO.read("password.txt")
 	end
+
+	def how_to_get_password
+	  puts "\nWould you like to used the hardcoded password or the one from the file? \nPlease type 1 or 2 for either option."
+	  input = gets.chomp
+	    if input == "1"
+	    	hardcoded
+	    elsif input == "2"
+	    	password_from_file
+	    else 
+	    	puts "\nUps, you didn't choose 1 or 2, let's try again."
+	    	how_to_get_password
+	    end
+	end
+	    	
 	
 	def get_user_info
 	  puts "Please, enter your user name:"
 	    @input_user_name = gets.chomp
-	  puts "Please, enter your password"
+	  how_to_get_password
+	  puts "Ok, so now, enter your password"
 	    @input_password = gets.chomp
+	  enters_text
 	end
 
 	def enters_text
@@ -21,11 +45,11 @@ class CommandLine
 		if @input_user_name == @user_name && @input_password == @password
 			puts "Please write something\n"
 			@user_text = gets.chomp
+			choose_what?
 	    else
 	    	puts "Sorry, you introduced an incorrect user name or password \n"
-	    	get_user_info
 	    	enters_text
-	    	choose_what?
+	    	
 	    end
 
 	end
@@ -76,7 +100,5 @@ class CommandLine
 end
 
 command_line = CommandLine.new
-command_line.get_user_info
-command_line.enters_text
-command_line.choose_what?
+
 
