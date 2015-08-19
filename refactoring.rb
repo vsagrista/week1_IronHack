@@ -1,3 +1,4 @@
+require "date"
 class User 
 	attr_accessor  :name, :email
 	def initialize(name, email)
@@ -32,3 +33,9 @@ class Validator
 	end
 
 end
+
+user1 = User.new("pepe", "pepelopez@gmail.com")
+my_token = Token.new(user1, 123456,Date.new(2015,10,10))
+user1_validate = Validator.new(user1)
+user1_validate.is_valid?(my_token.expiration, my_token.value)
+
