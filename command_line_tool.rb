@@ -6,7 +6,7 @@ class CommandLine
 	
 	def initialize
 	  @user_name = "victor"
-	  @password = "password"
+	  @password = IO.read("password.txt")
 	end
 	
 	def get_user_info
