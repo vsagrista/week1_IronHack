@@ -1,5 +1,4 @@
-
-class Factorized
+class WhatToDo
 
   def initialize (output)
     @output = output  
