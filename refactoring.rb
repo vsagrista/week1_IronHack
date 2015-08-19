@@ -14,3 +14,21 @@ class Token
 		@expiration =expiration	
 	end
 end
+
+class Validator
+
+	def initialize(user)
+		@user = user
+	end
+
+	def token_value
+		@value = 123456   
+	end
+ 	
+	def is_valid? (expiration, token)
+		if Date.today < expiration && token == token_value
+		puts "Authentification worked, welcome to our page!"
+		end
+	end
+
+end
