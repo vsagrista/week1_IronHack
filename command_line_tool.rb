@@ -36,3 +36,9 @@ class CommandLine
 
 end
 
+command_line = CommandLine.new
+command_line.get_user_info
+command_line.is_correct?
+command_line.enters_text
+command_line.count_words
+
