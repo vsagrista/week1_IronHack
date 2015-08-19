@@ -4,7 +4,6 @@ class CommandLine
 	attr_accessor :user_text
 	
 	def initialize
-	  puts ">"
 	  @user_name = "victor"
 	  @password = "password"
 	end
@@ -15,30 +14,30 @@ class CommandLine
 	  puts "Please, enter your password"
 	    @input_password = gets.chomp
 	end
-	
-	def is_correct?
-	  if @input_user_name == @user_name && @input_password == @password
-		true 
-	  else
-		false
-	  end
-	end
 
 	def enters_text
-		if is_correct? == true
+		if @input_user_name == @user_name && @input_password == @password
 			puts "Please write something"
 			@user_text = gets.chomp
-		end
-	end
-	def count_words
-		puts @user_text.length
+	    else
+	    	puts "Sorry, you introduced an incorrect user name or password \n"
+	    	get_user_info
+	    	enters_text
+	    end
 	end
 
+	def count_words
+		puts @user_text.split.size
+	end
 end
+
+
+
+
+
 
 command_line = CommandLine.new
 command_line.get_user_info
-command_line.is_correct?
 command_line.enters_text
 command_line.count_words
 
