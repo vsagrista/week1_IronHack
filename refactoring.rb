@@ -5,3 +5,12 @@ class User
 		@email = email
 	end
 end
+
+class Token
+	attr_accessor :user, :value, :expiration
+	def initialize(user,value, expiration)
+		@user = user
+		@value = value
+		@expiration =expiration	
+	end
+end
