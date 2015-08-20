@@ -29,3 +29,31 @@ attr_accessor :movies_array
 	end
 end
 
+class PrintRatings
+	def initialize
+		@max_rating = 8
+	end
+	
+	def print_value(movies)
+		while @max_rating > 0
+			print "|"	
+			movies.each do |item|
+			  if item >= @max_rating
+			    print "#"
+			    print "|"
+			  else 
+			  	print " "
+			  	print "|"
+			  end  
+		  end	
+		  print "\n"  
+		  @max_rating -= 1
+		end
+	end	
+
+end
+
+new_collection = GetMovies.new
+new_collection.send_movies_DB
+GetRatings.new.call_print_ratings
+
