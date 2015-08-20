@@ -17,7 +17,7 @@ class ParseSlides
 		  	when "auto"
 		  		auto_mode
 		  end
-		  if_undefined_page
+		  fixes_undefined_input
 	end
 
 	def manual_or_auto
@@ -28,5 +28,16 @@ class ParseSlides
 			get_input
 		end
 	end
+
+
+
+	def fixes_undefined_input 
+		if @page == 6
+		  @page = 0
+		elsif @page == -2
+		  @page = 2
+		end
+		count_spaces
+	end	
 
 end
