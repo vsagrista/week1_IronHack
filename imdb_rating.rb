@@ -13,3 +13,19 @@ attr_accessor :movies
 	end
 end
 
+class GetRatings
+attr_accessor :movies_array
+@@movies_array = []
+@@i = 1
+	def rating_push(movie)
+		puts "#{@@i}.#{movie}"
+		movie = Imdb::Search.new(movie)
+		@rating =  movie.movies[0].rating.round
+		@@movies_array << @rating
+		@@i += 1
+	end	
+	def call_print_ratings
+		PrintRatings.new.print_value(@@movies_array)
+	end
+end
+
