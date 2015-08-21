@@ -1,3 +1,14 @@
+class GetMoves
+	def initialize
+		@moves = IO.read("simple_moves.txt").split
+	end
+	def encapsulate_moves
+		@array_of_moves = @moves.each_slice(4).to_a 
+	end
+end
+
+GetMoves.new.encapsulate_moves
+
 
 
 class MoveUpDown  #[2,3],[2,4]
