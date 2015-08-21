@@ -72,6 +72,54 @@ class MoveDiagonal
 end
 
 
+class MoveLikeL
+	def initialize
+    	@direction = ""
+    end
+     def which_direction(array1,array2)
+		if array2[0] > array1[0] && array2[1] > array1[1]
+			@direction = "UpRight1"
+		elsif array2[0] < array1[0] && array2[1] > array1[1]
+			@direction = "UpRight2"
+		elsif array2[0] > array1[0] && array2[1] < array1[1]
+			@direction = "DownLeft1"
+		elsif array2[0] < array1[0] && array2[1] < array1[1]
+			@direction = "DownLeft2"
+		end
+		l_coordenates_calculator(array1,array2)
+	end
+
+	def l_coordenates_calculator(array1,array2)
+			case @direction
+			  when "UpRight1" 
+				array1[0]+=1
+			    array1[1]+=2
+			  when "UpRight2"
+			  	array1[0]-=1
+			    array1[1]+=2
+			  when "DownLeft1"
+			  	array1[0]+=1
+			    array1[1]-=2
+			  when "DownLeft2"
+			  	array1[0]-=1
+			    array1[1]-=2
+			end
+			valid_diagonal?(array1[0],array2[0],array1[1],array2[1])	
+	end
+
+	def reverse_check(array1,array2)
+		which_direction(array1.reverse,array2.reverse)
+	end
+	
+	def valid_diagonal?(x,y,z,n)
+		if x == y && z == n
+			puts "Valid"
+			return true
+		end
+	end
+end
+
+
 new_move = MoveLeftRight.new
 p new_move.valid_y([3,4],[5,3])
 p new_move.valid_x([0,4],[3,4])
@@ -80,3 +128,7 @@ p new_move.valid_x([0,4],[3,4])
 move = MoveDiagonal.new 
 p move.which_direction([3,2],[4,1])
 
+
+move_l = MoveLikeL.new
+move_l.which_direction([0,0],[1,2])
+move_l.reverse_check([0,0],[1,2])
