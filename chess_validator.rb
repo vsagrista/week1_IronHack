@@ -1,13 +1,50 @@
+
 class GetMoves
-	def initialize
-		@moves = IO.read("simple_moves.txt").split
+
+  def initialize
+    @moves = IO.read("simple_moves.txt").split
+    @coordenates = []
+  end
+
+  def create_one_string_moves
+	@moves_to_string = ""
+	@moves.each do |character|
+	  @moves_to_string << character
 	end
-	def encapsulate_moves
-		@array_of_moves = @moves.each_slice(4).to_a 
-	end
+  end
+
+  def send_characters_to_coordenates
+	@moves_to_string.each_char do |point|
+	  coordenates_generator(point)  
+	end			
+  end  
+
+  def coordenates_generator(point)
+	  	  if point == "a"
+	  	  	@coordenates << 0
+	  	  elsif point == "b"
+	  	  	@coordenates << 1
+	  	  elsif point == "c"
+	  	  	@coordenates << 2
+	  	  elsif point == "d"
+	  	  	@coordenates << 3
+	  	  elsif point == "e"
+	  	  	@coordenates << 4
+	  	  elsif point == "f"
+	  	  	@coordenates << 5
+	  	  elsif point == "g"
+	  	  	@coordenates << 6 
+	  	  elsif point == "h"
+	  	  	@coordenates << 7
+	  	  else 
+	  	    @coordenates << point.to_i
+	  	  end	
+  end
 end
 
-GetMoves.new.encapsulate_moves
+new_coordenates = GetMoves.new
+new_coordenates.create_one_string_moves
+new_coordenates.send_characters_to_coordenates
 
 
 
