@@ -40,11 +40,15 @@ class GetMoves
 	  	    @coordenates << point.to_i
 	  	  end	
   end
+  def convert_easier_format
+  	@coordenates = @coordenates.each_slice(2).to_a
+  end
 end
 
 new_coordenates = GetMoves.new
 new_coordenates.create_one_string_moves
 new_coordenates.send_characters_to_coordenates
+new_coordenates.convert_easier_format
 
 
 
@@ -168,9 +172,9 @@ class MoveLikeL
 end
 
 
-new_move = MoveLeftRight.new
-p new_move.valid_y([3,4],[5,3])
-p new_move.valid_x([0,4],[3,4])
+new_move_cross = MoveLeftRight.new
+p new_move_cross.valid_y([3,4],[5,3])
+p new_move_cross.valid_x([0,4],[3,4])
 
 
 move = MoveDiagonal.new 
