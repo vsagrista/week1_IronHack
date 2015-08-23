@@ -1,4 +1,6 @@
 
+# GetMoves class: obtains chess moves to be tested from external file
+
 class GetMoves
 
 attr_accessor :coordenates
@@ -54,6 +56,7 @@ new_coordenates.send_characters_to_coordenates
 new_coordenates.convert_easier_format
 
 
+# OutOfBoard & IsEqual: check whether the move is out of the board or if player didn't move
 
 module OutOfBoard   # if true the rest is not executed
   def solution(array1,array2)
@@ -73,6 +76,7 @@ module IsEqual   # if true the rest is not executed
   end
 end
 
+# Pieces modules: the following modules reflect the moves allowed for each piece
 
 module PawnMove 
   def solution(array1,array2) 
@@ -208,7 +212,7 @@ module KnightMove # L shape
 end
 
 
-module KingMove # king 
+module KingMove # +1 to anywhere 
   def check_king_moves(array1,array2) # compare x with change in y	
 	@both_coordenates_true = false
 	  if array1[0] == array2[0]|| array1[0]+1 == array2[0]|| array1[0]- 1 == array2[0] && array1[1] == array2[1] || array1[1] + 1 == @yy || array1[1] - 1 == array2[1]
@@ -226,6 +230,7 @@ module KingMove # king
   end
 end
 
+# Piece classes: here are classes that will use the modules to check if the tested moves are legal
 
 class Pawn
   def initialize
