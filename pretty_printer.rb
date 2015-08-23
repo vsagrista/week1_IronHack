@@ -22,7 +22,7 @@ a_date = Date.today
 
 
 class PrettyPrinter
-@@counter = 0
+@@counter = 1
   def initialize(object)
 	@object = object
   end
@@ -34,26 +34,26 @@ class PrettyPrinter
   end
 
   def hash(hash) 
-    print_space
+    @@counter.times{print_space}
     puts "Hash:"                                                                                                                              
     hash.each do |key,value|                                                                                                                       
     string = "#{key} -> #{value}"
-    print_space
-    print_space
+    @@counter.times{print_space}
+    @@counter.times{print_space}
     puts string                                                                                                                     
     end
   end
   def string(string)
-     print_space
-     puts string
+    @@counter.times{print_space}
+    puts string
   end
   def fixnum(fixnum)
-    print_space
+    @@counter.times{print_space}
     puts fixnum
   end
   def date(date)
-     print_space
-     puts date
+    @@counter.times{print_space}
+    puts date
   end
   def print_items(object)
   	object.each do |item|
@@ -66,20 +66,22 @@ class PrettyPrinter
       elsif item.class == Date 
         date(item) 
       elsif item.class == Array 
+        @@counter+=1
         object_is_array(item)
       end
     end
   end
 
-  def call_again(item)
-    @object = item
-    print_items
-  end
-
   def object_is_array(object)
     if @object.class == Array 
-      puts "Array:"
-      print_items(object)
+      if @@counter ==1
+        puts "Array:"
+        print_items(object)
+      else
+        (@@counter-1).times{print_space}
+        puts "Array:"
+        print_items(object)
+      end
     else 
       puts "Array:"
       print_space
