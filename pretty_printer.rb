@@ -25,27 +25,43 @@ class PrettyPrinter
   def initialize(object)
 	@object = object
   end
-  def printKey(hash)                                                                                                                               
+  def hash(hash) 
+    print "  "
+    puts "Hash:"                                                                                                                              
     hash.each do |key,value|                                                                                                                       
     string = "#{key} -> #{value}"
+    print "    "
     puts string                                                                                                                     
     end
+  end
+  def string(string)
+    print "  "
+    puts string
+  end
+  def fixnum(fixnum)
+    print "  "
+    puts fixnum
+  end
+  def date(date)
+    print "  "
+    puts date
   end
   def print_items
   	@object.each do |item|
       if item.class == String
-        puts item
+        string(item)
       elsif item.class == Fixnum
-        puts item
+        fixnum(item)
       elsif item.class == Hash 
-        puts item
+        hash(item)
       elsif item.class == Date 
-        puts item
+        date(item) 
       elsif item.class == Array 
         call_again(item)
       end
     end
   end
+
   def call_again(item)
     @object = item
     print_items
@@ -53,6 +69,7 @@ class PrettyPrinter
 
   def object_is_array
     if @object.class == Array 
+      puts "Array:"
       print_items
     else 
       puts "Array:"
@@ -61,42 +78,16 @@ class PrettyPrinter
 
     end
   end
-
-
-
 end
 
 
 print = PrettyPrinter.new(["My", 3, a_hash, a_date, ["Pied", "Piper"]])
-print.print_items
+print.object_is_array
 
 
 
 
 
-=begin
-      case item
-      when Array 
-        puts "Array:"
-        item.each do |x|
-  	      recursive_process(x)
-        end
-      when String
-        print "  "
-        puts item
-      when Fixnum
-        print "  "
-        puts item
-      when Date
-        print "  "
-        puts item
-      when is_a?Hash 
-        printKey(item)
-      end
-    end
-  end
-end
 
-=end
-   
+
 
